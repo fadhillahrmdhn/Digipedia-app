@@ -1,0 +1,14 @@
+# Operating System Detection
+OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
+
+if echo "$OS" | grep -q "mingw"; then
+# windows (Git Bash)
+echo "🔍 Detected Windows (Git Bash). Running PowerShell script ... "
+powershell.exe -ExecutionPolicy Bypass -NoProfile -File .husky/pre-push.ps1 "$1"
+else
+# Linux/Mac
+echo " Detected Linux/Mac. Running shell script ... "
+echo "Run build before push ... "
+bun run build || (echo "❌ Build failed! Push aborted." && exit 1)
+echo "✅ Build OK. Proceeding to push."
+fi
