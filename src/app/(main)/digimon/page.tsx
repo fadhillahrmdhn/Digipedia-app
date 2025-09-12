@@ -11,6 +11,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
+import { X, Shield, Swords, Star } from "lucide-react";
 
 const DigimonPage = () => {
   const { data } = useQuery({
@@ -100,24 +101,69 @@ const DigimonDetailView = ({
       className="fixed inset-0 bg-black/60 flex items-center justify-center p-4"
       onClick={onClose}
     >
-      <div onClick={(e) => e.stopPropagation()}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-md"
+      >
+        <button
+          aria-label="Close"
+          type="button"
+          onClick={onClose}
+          className="absolute top-2 right-2 z-20 bg-white/80 rounded-full p-1 hover:bg-gray-200 dark:bg-gray-900/80 dark:hover:bg-gray-700 cursor-pointer backdrop-blur-sm"
+        >
+          <X className="w-6 h-6 text-gray-800 dark:text-gray-200" />
+        </button>
         {detailData && (
           <Card
             key={detailData.id}
-            className="p-0 gap-0 overflow-hidden max-w-md md:min-h-[90vh]"
+            className="p-0 gap-0 w-full max-h-[90vh] flex flex-col shadow-2xl dark:shadow-black/50 rounded-2xl overflow-hidden"
           >
-            <CardHeader className="p-0">
+            <CardHeader className="p-0 relative flex-shrink-0">
               <Image
                 src={detailData.images[0].href}
                 alt={detailData.name}
                 width={400}
                 height={400}
-                className="w-full h-48 object-contain bg-gray-100 dark:bg-gray-800"
+                className="w-full h-56 object-contain bg-gray-100 dark:bg-gray-800"
               />
+              <div className="absolute bottom-0 w-full h-20 bg-gradient-to-t from-gray-100 dark:from-gray-800 to-transparent" />
             </CardHeader>
-            <CardContent className="p-4 flex-grow">
-              <CardTitle>{detailData.name}</CardTitle>
-              <CardDescription className="mt-2 line-clamp-4">
+            <CardContent className="p-6 flex-1 overflow-y-auto bg-white dark:bg-gray-900">
+              <CardTitle className="text-3xl font-bold tracking-tight">
+                {detailData.name}
+              </CardTitle>
+
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+                {detailData.levels?.map((level) => (
+                  <div
+                    key={level.id}
+                    className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"
+                  >
+                    <Star className="w-4 h-4 text-yellow-500" />
+                    <span className="font-medium">{level.level}</span>
+                  </div>
+                ))}
+                {detailData.types?.map((type) => (
+                  <div
+                    key={type.id}
+                    className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"
+                  >
+                    <Swords className="w-4 h-4 text-red-500" />
+                    <span className="font-medium">{type.type}</span>
+                  </div>
+                ))}
+                {detailData.attributes?.map((attr) => (
+                  <div
+                    key={attr.id}
+                    className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"
+                  >
+                    <Shield className="w-4 h-4 text-blue-500" />
+                    <span className="font-medium">{attr.attribute}</span>
+                  </div>
+                ))}
+              </div>
+
+              <CardDescription className="mt-4 text-base leading-relaxed text-gray-700 dark:text-gray-300">
                 {detailData.descriptions[1].description}
               </CardDescription>
             </CardContent>
