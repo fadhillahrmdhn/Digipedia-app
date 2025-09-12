@@ -124,7 +124,7 @@ const DigimonDetailView = ({
                 alt={detailData.name}
                 width={400}
                 height={400}
-                className="w-full h-56 object-contain bg-gray-100 dark:bg-gray-800"
+                className="w-full h-56 object-contain dark:bg-gray-800"
               />
               <div className="absolute bottom-0 w-full h-20 bg-gradient-to-t from-gray-100 dark:from-gray-800 to-transparent" />
             </CardHeader>
