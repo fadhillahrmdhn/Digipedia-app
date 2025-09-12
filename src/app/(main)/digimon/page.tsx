@@ -43,7 +43,9 @@ const DigimonPage = () => {
                   />
                 </CardHeader>
                 <CardContent className="p-4">
-                  <CardTitle>{character.name}</CardTitle>
+                  <CardTitle className="font-bold text-center">
+                    {character.name}
+                  </CardTitle>
                 </CardContent>
               </Card>
             </button>
