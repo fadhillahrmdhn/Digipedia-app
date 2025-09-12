@@ -16,7 +16,7 @@ export const fetchDigimonList = async ({
 };
 
 export const fetchDigimonDetail = async (
-  id: number,
+  id: string,
 ): Promise<DigimonDetail> => {
   const res: AxiosResponse<DigimonDetail> = await api.get(`/digimon/${id}`);
   return res.data;

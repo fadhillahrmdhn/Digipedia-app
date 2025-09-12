@@ -1,9 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchDigimonList } from "@/services";
+import { fetchDigimonList, fetchDigimonDetail } from "@/services";
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 
 const DigimonPage = () => {
   const { data } = useQuery({
@@ -11,32 +18,110 @@ const DigimonPage = () => {
     queryFn: () => fetchDigimonList({ page: 2, pageSize: 15 }),
   });
 
-  console.log(data);
+  const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
   return (
     <div className="w-full">
       <div className="m-4 grid grid-cols-[repeat(auto-fit,minmax(13rem,1fr))] gap-4">
         {data?.content && data.content.length > 0 ? (
           data.content.map((character) => (
-            <Card key={character.id} className="p-0 gap-0 overflow-hidden">
-              <CardHeader className="p-0">
-                <Image
-                  src={character.image}
-                  alt={character.name}
-                  width={400}
-                  height={400}
-                  className="w-full h-48 object-contain"
-                />
-              </CardHeader>
-              <CardContent className="p-4">
-                <CardTitle>{character.name}</CardTitle>
-              </CardContent>
-            </Card>
+            <button
+              key={character.id}
+              type="button"
+              className="cursor-pointer text-left"
+              onClick={() => setSelectedCard(character.id)}
+            >
+              <Card key={character.id} className="p-0 gap-0 overflow-hidden">
+                <CardHeader className="p-0">
+                  <Image
+                    src={character.image}
+                    alt={character.name}
+                    width={400}
+                    height={400}
+                    className="w-full h-48 object-contain"
+                  />
+                </CardHeader>
+                <CardContent className="p-4">
+                  <CardTitle>{character.name}</CardTitle>
+                </CardContent>
+              </Card>
+            </button>
           ))
         ) : (
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-2xl text-muted-foreground">
             No characters found.
           </div>
+        )}
+      </div>
+
+      {/* Menampilkan detail digimon */}
+      {selectedCard && (
+        <DigimonDetailView
+          id={selectedCard}
+          onClose={() => setSelectedCard(null)}
+        />
+      )}
+    </div>
+  );
+};
+
+const DigimonDetailView = ({
+  id,
+  onClose,
+}: {
+  id: string;
+  onClose: () => void;
+}) => {
+  const {
+    data: detailData,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["digimonDetail", id],
+    queryFn: () => fetchDigimonDetail(id),
+    enabled: !!id, // Hanya jalankan query jika `id` ada
+  });
+
+  if (isLoading)
+    return (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center text-white">
+        Loading details...
+      </div>
+    );
+  if (error)
+    return (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center text-red-500">
+        Error fetching details.
+      </div>
+    );
+
+  return (
+    <div
+      className="fixed inset-0 bg-black/60 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <div onClick={(e) => e.stopPropagation()}>
+        {detailData && (
+          <Card
+            key={detailData.id}
+            className="p-0 gap-0 overflow-hidden max-w-md md:min-h-[90vh]"
+          >
+            <CardHeader className="p-0">
+              <Image
+                src={detailData.images[0].href}
+                alt={detailData.name}
+                width={400}
+                height={400}
+                className="w-full h-48 object-contain bg-gray-100 dark:bg-gray-800"
+              />
+            </CardHeader>
+            <CardContent className="p-4 flex-grow">
+              <CardTitle>{detailData.name}</CardTitle>
+              <CardDescription className="mt-2 line-clamp-4">
+                {detailData.descriptions[1].description}
+              </CardDescription>
+            </CardContent>
+          </Card>
         )}
       </div>
     </div>

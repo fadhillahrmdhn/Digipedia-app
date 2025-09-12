@@ -1,5 +1,5 @@
 export interface DigimonDetail {
-  id: number;
+  id: string;
   name: string;
   xAntibody: boolean;
   images: DigimonImage[];
