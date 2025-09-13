@@ -150,23 +150,23 @@ const DigimonDetailView = ({
                 {detailData.name}
               </CardTitle>
               {/* Stats */}
-              <div className="mt-6 grid grid-cols-2 gap-4 ">
+              <div className="mt-6 grid grid-cols-2 gap-3 ">
                 {/* Level */}
                 <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow bg-amber-400">
-                  <span className="bg-amber-600 font-semibold px-2 py-1">
+                  <span className="bg-amber-600 font-semibold px-2 py-1 h-full justify-center text-center">
                     Level
                   </span>
-                  <span className=" text-gray-900 font-medium px-2 py-1">
+                  <span className=" text-gray-900 font-medium px-2">
                     {detailData.levels?.map((level) => level.level).join(", ")}
                   </span>
                 </div>
 
                 {/* Attribute */}
                 <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow bg-red-400">
-                  <span className="bg-red-600 font-semibold px-2 py-1">
+                  <span className="bg-red-600 font-semibold px-2 py-1 h-full justify-center text-center">
                     Attribute
                   </span>
-                  <span className=" text-gray-900 font-medium px-2 py-1">
+                  <span className=" text-gray-900 font-medium px-2">
                     {detailData.attributes
                       ?.map((attr) => attr.attribute)
                       .join(", ")}
@@ -175,10 +175,10 @@ const DigimonDetailView = ({
 
                 {/* Type */}
                 <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow bg-blue-400">
-                  <span className="bg-blue-600 font-semibold px-2 py-1">
+                  <span className="bg-blue-600 font-semibold px-2 py-1 h-full justify-center text-center">
                     Type
                   </span>
-                  <span className="bg-blue-400 text-gray-900 font-medium px-2 py-1">
+                  <span className=" text-gray-900 font-medium px-2">
                     {detailData.types?.map((type) => type.type).join(", ")}
                   </span>
                 </div>
