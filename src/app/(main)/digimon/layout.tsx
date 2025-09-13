@@ -3,5 +3,5 @@ export default function DigimonLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return <div className="m-5">{children}</div>;
 }

@@ -11,15 +11,29 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { X, Shield, Swords, Star } from "lucide-react";
+import Loading from "@/app/loading";
+import { X } from "lucide-react";
 
 const DigimonPage = () => {
-  const { data } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["digimonList", { page: 1, pageSize: 15 }],
     queryFn: () => fetchDigimonList({ page: 2, pageSize: 15 }),
   });
 
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
+
+  if (isLoading)
+    return (
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-2xl text-muted-foreground">
+        <Loading />
+      </div>
+    );
+  if (error)
+    return (
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-2xl text-red-500">
+        Error fetching data.
+      </div>
+    );
 
   return (
     <div className="w-full">
@@ -51,6 +65,7 @@ const DigimonPage = () => {
             </button>
           ))
         ) : (
+          //Todo: Tambahkan animasi loading atau skeleton di sini
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-2xl text-muted-foreground">
             No characters found.
           </div>
@@ -131,41 +146,39 @@ const DigimonDetailView = ({
               <div className="absolute bottom-0 w-full h-20 bg-gradient-to-t from-gray-100 dark:from-gray-800 to-transparent" />
             </CardHeader>
             <CardContent className="p-6 flex-1 overflow-y-auto bg-white dark:bg-gray-900">
-              <CardTitle className="text-3xl font-bold tracking-tight">
+              <CardTitle className="text-3xl font-bold tracking-tight text-center">
                 {detailData.name}
               </CardTitle>
 
               <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-                {detailData.levels?.map((level) => (
-                  <div
-                    key={level.id}
-                    className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                    <Star className="w-4 h-4 text-yellow-500" />
-                    <span className="font-medium">{level.level}</span>
-                  </div>
-                ))}
-                {detailData.types?.map((type) => (
-                  <div
-                    key={type.id}
-                    className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                    <Swords className="w-4 h-4 text-red-500" />
-                    <span className="font-medium">{type.type}</span>
-                  </div>
-                ))}
-                {detailData.attributes?.map((attr) => (
-                  <div
-                    key={attr.id}
-                    className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                    <Shield className="w-4 h-4 text-blue-500" />
-                    <span className="font-medium">{attr.attribute}</span>
-                  </div>
-                ))}
-              </div>
+                {/* Level */}
+                <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">
+                  <span className="font-bold text-orange-400">Level: </span>
+                  <span className="font-medium">
+                    {detailData.levels?.map((level) => level.level).join(", ")}
+                  </span>
+                </div>
 
-              <CardDescription className="mt-4 text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                {/* Type */}
+                <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">
+                  <span className="font-bold text-blue-400">Type: </span>
+                  <span className="font-medium">
+                    {detailData.types?.map((type) => type.type).join(", ")}
+                  </span>
+                </div>
+
+                {/* Attribute */}
+                <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">
+                  <span className="font-bold text-green-400">Attribute: </span>
+                  <span className="font-medium">
+                    {detailData.attributes
+                      ?.map((attr) => attr.attribute)
+                      .join(", ")}
+                  </span>
+                </div>
+              </div>
+              {/* Description */}
+              <CardDescription className="mt-4 text-base leading-relaxed text-gray-800 dark:text-gray-300 text-justify gap-2">
                 {detailData.descriptions[1].description}
               </CardDescription>
             </CardContent>
