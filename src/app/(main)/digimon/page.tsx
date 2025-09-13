@@ -152,25 +152,31 @@ const DigimonDetailView = ({
 
               <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
                 {/* Level */}
-                <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">
-                  <span className="font-bold text-orange-400">Level: </span>
-                  <span className="font-medium">
+                <div className="flex items-center text-sm text-gray-100 dark:text-white">
+                  <span className="bg-orange-500 font-bold px-1 py-1 rounded-l-md ">
+                    Level
+                  </span>
+                  <span className="font-medium bg-orange-400  px-1 py-1 rounded-r-md ">
                     {detailData.levels?.map((level) => level.level).join(", ")}
                   </span>
                 </div>
 
                 {/* Type */}
-                <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">
-                  <span className="font-bold text-blue-400">Type: </span>
-                  <span className="font-medium">
+                <div className="flex items-center text-sm text-gray-100 dark:text-white">
+                  <span className="bg-blue-500  font-bold px-1 py-1 rounded-l-md">
+                    Type{" "}
+                  </span>
+                  <span className="font-medium bg-blue-400  px-1 py-1 rounded-r-md">
                     {detailData.types?.map((type) => type.type).join(", ")}
                   </span>
                 </div>
 
                 {/* Attribute */}
-                <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">
-                  <span className="font-bold text-green-400">Attribute: </span>
-                  <span className="font-medium">
+                <div className="flex items-center text-sm text-gray-100 dark:text-white">
+                  <span className="bg-green-500 font-bold px-1 py-1 rounded-l-md">
+                    Attribute{" "}
+                  </span>
+                  <span className="font-medium bg-green-400  px-1 py-1 rounded-r-md">
                     {detailData.attributes
                       ?.map((attr) => attr.attribute)
                       .join(", ")}
