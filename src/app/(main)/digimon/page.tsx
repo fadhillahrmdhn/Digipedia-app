@@ -149,24 +149,24 @@ const DigimonDetailView = ({
               <CardTitle className="text-3xl font-bold tracking-tight text-center">
                 {detailData.name}
               </CardTitle>
-
-              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+              {/* Stats */}
+              <div className="mt-6 grid grid-cols-2 gap-4 ">
                 {/* Level */}
-                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow">
+                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow bg-amber-400">
                   <span className="bg-amber-600 font-semibold px-2 py-1">
                     Level
                   </span>
-                  <span className="bg-amber-400 text-gray-900 font-medium px-2 py-1">
+                  <span className=" text-gray-900 font-medium px-2 py-1">
                     {detailData.levels?.map((level) => level.level).join(", ")}
                   </span>
                 </div>
 
                 {/* Attribute */}
-                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow">
+                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow bg-red-400">
                   <span className="bg-red-600 font-semibold px-2 py-1">
                     Attribute
                   </span>
-                  <span className="bg-red-400 text-gray-900 font-medium px-2 py-1">
+                  <span className=" text-gray-900 font-medium px-2 py-1">
                     {detailData.attributes
                       ?.map((attr) => attr.attribute)
                       .join(", ")}
@@ -174,7 +174,7 @@ const DigimonDetailView = ({
                 </div>
 
                 {/* Type */}
-                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow">
+                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow bg-blue-400">
                   <span className="bg-blue-600 font-semibold px-2 py-1">
                     Type
                   </span>
@@ -185,7 +185,7 @@ const DigimonDetailView = ({
               </div>
 
               {/* Description */}
-              <CardDescription className="mt-4 text-base leading-relaxed text-gray-800 dark:text-gray-300 text-justify gap-2 flex flex-col">
+              <CardDescription className="mt-4 text-base leading-relaxed text-gray-800 dark:text-gray-300 text-justify gap-2 line-clamp-3 flex flex-col">
                 <span className="font-bold">Description:</span>
                 {detailData.descriptions[1].description}
               </CardDescription>
