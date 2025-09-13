@@ -43,7 +43,7 @@ const DigimonPage = () => {
             <button
               key={character.id}
               type="button"
-              className="cursor-pointer text-left"
+              className="cursor-pointer rounded-lg text-left transition-transform duration-300 ease-in-out hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
               onClick={() => setSelectedCard(character.id)}
             >
               <Card key={character.id} className="p-0 gap-0 overflow-hidden">
@@ -65,7 +65,6 @@ const DigimonPage = () => {
             </button>
           ))
         ) : (
-          //Todo: Tambahkan animasi loading atau skeleton di sini
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-2xl text-muted-foreground">
             No characters found.
           </div>
