@@ -152,39 +152,41 @@ const DigimonDetailView = ({
 
               <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
                 {/* Level */}
-                <div className="flex items-center text-sm text-gray-100 dark:text-white">
-                  <span className="bg-amber-500 font-bold px-1 py-1 rounded-l-sm ">
+                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow">
+                  <span className="bg-amber-600 font-semibold px-2 py-1">
                     Level
                   </span>
-                  <span className="font-medium bg-amber-400  px-1 py-1 rounded-r-sm ">
+                  <span className="bg-amber-400 text-gray-900 font-medium px-2 py-1">
                     {detailData.levels?.map((level) => level.level).join(", ")}
                   </span>
                 </div>
 
-                {/* Type */}
-                <div className="flex items-center text-sm text-gray-100 dark:text-white">
-                  <span className="bg-blue-500  font-bold px-1 py-1 rounded-l-sm">
-                    Type
-                  </span>
-                  <span className="font-medium bg-blue-400  px-1 py-1 rounded-r-sm">
-                    {detailData.types?.map((type) => type.type).join(", ")}
-                  </span>
-                </div>
-
                 {/* Attribute */}
-                <div className="flex items-center text-sm text-gray-100 dark:text-white">
-                  <span className="bg-red-500 font-bold px-1 py-1 rounded-l-sm">
+                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow">
+                  <span className="bg-red-600 font-semibold px-2 py-1">
                     Attribute
                   </span>
-                  <span className="font-medium bg-red-400  px-1 py-1 rounded-r-sm">
+                  <span className="bg-red-400 text-gray-900 font-medium px-2 py-1">
                     {detailData.attributes
                       ?.map((attr) => attr.attribute)
                       .join(", ")}
                   </span>
                 </div>
+
+                {/* Type */}
+                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow">
+                  <span className="bg-blue-600 font-semibold px-2 py-1">
+                    Type
+                  </span>
+                  <span className="bg-blue-400 text-gray-900 font-medium px-2 py-1">
+                    {detailData.types?.map((type) => type.type).join(", ")}
+                  </span>
+                </div>
               </div>
+
               {/* Description */}
-              <CardDescription className="mt-4 text-base leading-relaxed text-gray-800 dark:text-gray-300 text-justify gap-2">
+              <CardDescription className="mt-4 text-base leading-relaxed text-gray-800 dark:text-gray-300 text-justify gap-2 flex flex-col">
+                <span className="font-bold">Description:</span>
                 {detailData.descriptions[1].description}
               </CardDescription>
             </CardContent>
