@@ -7,14 +7,48 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Loading from "@/app/loading";
 import { DigimonDetailView } from "./_components";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+import { usePagination, dots } from "@/hooks";
 
 const DigimonPage = () => {
+  const [page, setPage] = useState<number>(1);
+  const [limit] = useState<number>(10);
+
   const { data, isLoading, error } = useQuery({
-    queryKey: ["digimonList", { page: 1, pageSize: 15 }],
-    queryFn: () => fetchDigimonList({ page: 2, pageSize: 15 }),
+    queryKey: ["digimonList", { page: page, pageSize: limit }],
+    queryFn: () => fetchDigimonList({ page: page, pageSize: limit }),
   });
 
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
+
+  const totalPage = data?.pageable.totalPages ?? 0;
+
+  const paginationRange = usePagination({
+    totalPage,
+    currentPage: page,
+    siblingCount: 1,
+  });
+
+  const handlePreviousPage = () => {
+    setPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setPage((prev) => Math.min(prev + 1, totalPage));
+  };
+
+  const handlePageClick = (pageNumber: number) => {
+    setPage(pageNumber);
+  };
 
   if (isLoading)
     return (
@@ -64,6 +98,49 @@ const DigimonPage = () => {
           </div>
         )}
       </div>
+      {/* {search === "" && ( */}
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem
+            className={
+              page === 1 ? "pointer-events-none opacity-40" : "cursor-pointer"
+            }
+          >
+            <PaginationPrevious onClick={handlePreviousPage} />
+          </PaginationItem>
+
+          {paginationRange.map((pageNumber, i) => {
+            if (pageNumber === dots) {
+              return (
+                <PaginationItem key={"dots-" + i}>
+                  <PaginationEllipsis />
+                </PaginationItem>
+              );
+            }
+            return (
+              <PaginationItem key={pageNumber} className="cursor-pointer">
+                <PaginationLink
+                  onClick={() => handlePageClick(pageNumber as number)}
+                  isActive={page === pageNumber}
+                >
+                  {pageNumber}
+                </PaginationLink>
+              </PaginationItem>
+            );
+          })}
+
+          <PaginationItem
+            className={
+              page === totalPage
+                ? "pointer-events-none opacity-40"
+                : "cursor-pointer"
+            }
+          >
+            <PaginationNext onClick={handleNextPage} />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+      {/* )} */}
 
       {/* Menampilkan detail digimon */}
       {selectedCard && (
