@@ -3,8 +3,8 @@ import { AxiosResponse } from "axios";
 import { api } from "@/config";
 
 export const fetchDigimonList = async ({
-  page = 1,
-  pageSize = 15,
+  page = 0,
+  pageSize = 20,
 }: paginationParams = {}): Promise<DigimonResponse> => {
   const res: AxiosResponse<DigimonResponse> = await api.get("/digimon", {
     params: {

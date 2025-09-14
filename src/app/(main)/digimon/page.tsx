@@ -21,11 +21,11 @@ import { usePagination, dots } from "@/hooks";
 
 const DigimonPage = () => {
   const [page, setPage] = useState<number>(1);
-  const [limit] = useState<number>(10);
+  const [limit] = useState<number>(20);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["digimonList", { page: page, pageSize: limit }],
-    queryFn: () => fetchDigimonList({ page: page, pageSize: limit }),
+    queryFn: () => fetchDigimonList({ page: page - 1, pageSize: limit }),
   });
 
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
@@ -65,7 +65,7 @@ const DigimonPage = () => {
 
   return (
     <div className="w-full">
-      <div className="m-4 grid grid-cols-[repeat(auto-fit,minmax(13rem,1fr))] gap-4">
+      <div className="m-4 mx-10 grid grid-cols-[repeat(auto-fit,minmax(13rem,1fr))] gap-4">
         {data?.content && data.content.length > 0 ? (
           data.content.map((character) => (
             <button
