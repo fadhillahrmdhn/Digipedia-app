@@ -107,6 +107,16 @@ export const DigimonDetailView = ({
                     {detailData.types?.map((type) => type.type).join(", ")}
                   </span>
                 </div>
+
+                {/* release date */}
+                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow bg-green-400">
+                  <span className="bg-green-600 font-semibold px-3 py-1 h-full justify-center text-center">
+                    Release
+                  </span>
+                  <span className=" text-gray-900 font-medium px-2">
+                    {detailData.releaseDate}
+                  </span>
+                </div>
               </div>
 
               {/* Description */}
