@@ -82,7 +82,9 @@ export const DigimonDetailView = ({
                     Level
                   </span>
                   <span className=" text-gray-900 font-medium px-2">
-                    {detailData.levels?.map((level) => level.level).join(", ")}
+                    {detailData.levels
+                      ?.map((level) => level.level)
+                      .join(", ") || "N/A"}
                   </span>
                 </div>
 
@@ -94,7 +96,7 @@ export const DigimonDetailView = ({
                   <span className=" text-gray-900 font-medium px-2">
                     {detailData.attributes
                       ?.map((attr) => attr.attribute)
-                      .join(", ")}
+                      .join(", ") || "N/A"}
                   </span>
                 </div>
 
@@ -104,7 +106,8 @@ export const DigimonDetailView = ({
                     Type
                   </span>
                   <span className=" text-gray-900 font-medium px-2">
-                    {detailData.types?.map((type) => type.type).join(", ")}
+                    {detailData.types?.map((type) => type.type).join(", ") ||
+                      "N/A"}
                   </span>
                 </div>
 
@@ -114,7 +117,7 @@ export const DigimonDetailView = ({
                     Release
                   </span>
                   <span className=" text-gray-900 font-medium px-2">
-                    {detailData.releaseDate}
+                    {detailData.releaseDate || "N/A"}
                   </span>
                 </div>
               </div>
@@ -122,7 +125,8 @@ export const DigimonDetailView = ({
               {/* Description */}
               <CardDescription className="mt-4 text-base leading-relaxed text-gray-800 dark:text-gray-300 text-justify gap-2 line-clamp-3 flex flex-col">
                 <span className="font-bold">Description:</span>
-                {detailData.descriptions[1].description}
+                {detailData.descriptions[1]?.description ||
+                  "No description available."}
               </CardDescription>
             </CardContent>
           </Card>
