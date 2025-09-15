@@ -70,7 +70,7 @@ const DigimonPage = () => {
 
   return (
     <div className="w-full">
-      <div className="m-4 mx-10 grid grid-cols-[repeat(auto-fit,minmax(13rem,1fr))] gap-4">
+      <div className="m-4 grid grid-cols-[repeat(auto-fill,minmax(13rem,1fr))] gap-4">
         {data?.content && data.content.length > 0 ? (
           data.content.map((character) => (
             <button
@@ -79,7 +79,7 @@ const DigimonPage = () => {
               className="cursor-pointer rounded-lg text-left transition-transform duration-300 ease-in-out hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
               onClick={() => setSelectedCard(character.id)}
             >
-              <Card key={character.id} className="p-0 gap-0 overflow-hidden">
+              <Card className="p-0 gap-0 overflow-hidden">
                 <CardHeader className="p-0">
                   <Image
                     src={character.image}

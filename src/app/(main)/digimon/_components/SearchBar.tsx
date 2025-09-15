@@ -8,7 +8,7 @@ interface SearchBarProps {
 export const SearchBar = ({ search, setSearch }: SearchBarProps) => {
   return (
     <Input
-      className="bg-white dark:bg-gray-800 w-full lg:w-1/4 self-end md:mr-4"
+      className="bg-white dark:bg-gray-800 w-full md:w-1/5 self-end md:mr-4"
       type="text"
       placeholder="Search characters..."
       value={search}
