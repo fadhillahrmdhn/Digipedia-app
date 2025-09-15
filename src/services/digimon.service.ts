@@ -21,3 +21,14 @@ export const fetchDigimonDetail = async (
   const res: AxiosResponse<DigimonDetail> = await api.get(`/digimon/${id}`);
   return res.data;
 };
+
+export const searchCharacter = async (
+  name: string,
+): Promise<DigimonResponse> => {
+  const res = await api.get<DigimonResponse>("/digimon", {
+    params: {
+      name,
+    },
+  });
+  return res.data;
+};

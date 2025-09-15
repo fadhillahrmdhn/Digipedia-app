@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchDigimonList } from "@/services";
+import { fetchDigimonList, searchCharacter } from "@/services";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Loading from "@/app/loading";
@@ -18,14 +18,19 @@ import {
 } from "@/components/ui/pagination";
 
 import { usePagination, dots } from "@/hooks";
+import { useSearchStore } from "@/store/searchStore";
 
 const DigimonPage = () => {
   const [page, setPage] = useState<number>(1);
   const [limit] = useState<number>(20);
+  const { search } = useSearchStore();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["digimonList", { page: page, pageSize: limit }],
-    queryFn: () => fetchDigimonList({ page: page - 1, pageSize: limit }),
+    queryKey: ["digimonList", { page: page, pageSize: limit, search }],
+    queryFn: () =>
+      search
+        ? searchCharacter(search)
+        : fetchDigimonList({ page: page - 1, pageSize: limit }),
   });
 
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
@@ -98,49 +103,49 @@ const DigimonPage = () => {
           </div>
         )}
       </div>
-      {/* {search === "" && ( */}
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem
-            className={
-              page === 1 ? "pointer-events-none opacity-40" : "cursor-pointer"
-            }
-          >
-            <PaginationPrevious onClick={handlePreviousPage} />
-          </PaginationItem>
+      {search === "" && (
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem
+              className={
+                page === 1 ? "pointer-events-none opacity-40" : "cursor-pointer"
+              }
+            >
+              <PaginationPrevious onClick={handlePreviousPage} />
+            </PaginationItem>
 
-          {paginationRange.map((pageNumber, i) => {
-            if (pageNumber === dots) {
+            {paginationRange.map((pageNumber, i) => {
+              if (pageNumber === dots) {
+                return (
+                  <PaginationItem key={"dots-" + i}>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                );
+              }
               return (
-                <PaginationItem key={"dots-" + i}>
-                  <PaginationEllipsis />
+                <PaginationItem key={pageNumber} className="cursor-pointer">
+                  <PaginationLink
+                    onClick={() => handlePageClick(pageNumber as number)}
+                    isActive={page === pageNumber}
+                  >
+                    {pageNumber}
+                  </PaginationLink>
                 </PaginationItem>
               );
-            }
-            return (
-              <PaginationItem key={pageNumber} className="cursor-pointer">
-                <PaginationLink
-                  onClick={() => handlePageClick(pageNumber as number)}
-                  isActive={page === pageNumber}
-                >
-                  {pageNumber}
-                </PaginationLink>
-              </PaginationItem>
-            );
-          })}
+            })}
 
-          <PaginationItem
-            className={
-              page === totalPage
-                ? "pointer-events-none opacity-40"
-                : "cursor-pointer"
-            }
-          >
-            <PaginationNext onClick={handleNextPage} />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
-      {/* )} */}
+            <PaginationItem
+              className={
+                page === totalPage
+                  ? "pointer-events-none opacity-40"
+                  : "cursor-pointer"
+              }
+            >
+              <PaginationNext onClick={handleNextPage} />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      )}
 
       {/* Menampilkan detail digimon */}
       {selectedCard && (
