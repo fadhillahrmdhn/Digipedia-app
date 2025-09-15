@@ -8,7 +8,7 @@ export default function DigimonLayout({
 }) {
   const { search, setSearch } = useSearchStore();
   return (
-    <div className="m-5 flex flex-col mx-10">
+    <div className="m-5 gap-4 flex flex-col mx-10">
       <SearchBar search={search} setSearch={setSearch} />
       {children}
     </div>
