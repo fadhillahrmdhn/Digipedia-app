@@ -51,14 +51,14 @@ export const DigimonDetailView = ({
           aria-label="Close"
           type="button"
           onClick={onClose}
-          className="absolute top-2 right-2 z-20 bg-white/80 rounded-full p-1 hover:bg-gray-200 dark:bg-gray-900/80 dark:hover:bg-gray-700 cursor-pointer backdrop-blur-sm"
+          className="absolute top-2 right-2 z-20 bg-black/30 rounded-full p-1 hover:bg-black/50 cursor-pointer backdrop-blur-sm"
         >
-          <X className="w-6 h-6 text-gray-800 dark:text-gray-200" />
+          <X className="w-6 h-6 text-white" />
         </button>
         {detailData && (
           <Card
             key={detailData.id}
-            className="p-0 gap-0 w-full max-h-[90vh] flex flex-col shadow-2xl dark:shadow-black/50 rounded-2xl overflow-hidden"
+            className="p-0 gap-0 w-full max-h-[90vh] flex flex-col shadow-2xl dark:shadow-black/50 rounded-2xl overflow-hidden border-blue-400"
           >
             <CardHeader className="p-0 relative flex-shrink-0">
               <Image
@@ -66,12 +66,12 @@ export const DigimonDetailView = ({
                 alt={detailData.name}
                 width={400}
                 height={400}
-                className="w-full h-56 object-contain dark:bg-gray-800"
+                className="w-full h-56 object-contain bg-white/10"
               />
-              <div className="absolute bottom-0 w-full h-20 bg-gradient-to-t from-gray-100 dark:from-gray-800 to-transparent" />
+              <div className="absolute bottom-0 w-full h-20 bg-gradient-to-t from-[#1142B6] to-transparent" />
             </CardHeader>
-            <CardContent className="p-6 flex-1 overflow-y-auto bg-white dark:bg-gray-900">
-              <CardTitle className="text-3xl font-bold tracking-tight text-center">
+            <CardContent className="p-6 flex-1 overflow-y-auto bg-[#1142B6] scrollbar-custom">
+              <CardTitle className="text-3xl font-bold tracking-tight text-center text-white">
                 {detailData.name}
               </CardTitle>
               {/* Stats */}
@@ -81,7 +81,7 @@ export const DigimonDetailView = ({
                   <span className="bg-amber-600 font-semibold px-2 py-1 h-full justify-center text-center">
                     Level
                   </span>
-                  <span className=" text-gray-900 font-medium px-2">
+                  <span className="text-white font-medium px-2">
                     {detailData.levels
                       ?.map((level) => level.level)
                       .join(", ") || "N/A"}
@@ -93,7 +93,7 @@ export const DigimonDetailView = ({
                   <span className="bg-red-600 font-semibold px-2 py-1 h-full justify-center text-center">
                     Attribute
                   </span>
-                  <span className=" text-gray-900 font-medium px-2">
+                  <span className="text-white font-medium px-2">
                     {detailData.attributes
                       ?.map((attr) => attr.attribute)
                       .join(", ") || "N/A"}
@@ -101,11 +101,11 @@ export const DigimonDetailView = ({
                 </div>
 
                 {/* Type */}
-                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow bg-blue-400">
-                  <span className="bg-blue-600 font-semibold px-2 py-1 h-full justify-center text-center">
+                <div className="inline-flex items-center text-sm text-white rounded-md overflow-hidden shadow bg-purple-400">
+                  <span className="bg-purple-600 font-semibold px-2 py-1 h-full justify-center text-center">
                     Type
                   </span>
-                  <span className=" text-gray-900 font-medium px-2">
+                  <span className="text-white font-medium px-2">
                     {detailData.types?.map((type) => type.type).join(", ") ||
                       "N/A"}
                   </span>
@@ -116,14 +116,14 @@ export const DigimonDetailView = ({
                   <span className="bg-green-600 font-semibold px-3 py-1 h-full justify-center text-center">
                     Release
                   </span>
-                  <span className=" text-gray-900 font-medium px-2">
+                  <span className="text-white font-medium px-2">
                     {detailData.releaseDate || "N/A"}
                   </span>
                 </div>
               </div>
 
               {/* Description */}
-              <CardDescription className="mt-4 text-base leading-relaxed text-gray-800 dark:text-gray-300 text-justify gap-2 line-clamp-3 flex flex-col">
+              <CardDescription className="mt-4 text-base leading-relaxed text-gray-200 text-justify gap-2 line-clamp-3 flex flex-col">
                 <span className="font-bold">Description:</span>
                 {detailData.descriptions[1]?.description ||
                   "No description available."}

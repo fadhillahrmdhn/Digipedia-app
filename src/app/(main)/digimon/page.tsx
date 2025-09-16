@@ -69,18 +69,18 @@ const DigimonPage = () => {
     );
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-4">
       <div className="m-4 grid grid-cols-[repeat(auto-fill,minmax(13rem,1fr))] gap-4">
         {data?.content && data.content.length > 0 ? (
           data.content.map((character) => (
             <button
               key={character.id}
               type="button"
-              className="cursor-pointer rounded-lg text-left transition-transform duration-300 ease-in-out hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+              className="cursor-pointer rounded-lg text-left transition-transform duration-300 ease-in-out hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-white"
               onClick={() => setSelectedCard(character.id)}
             >
-              <Card className="p-0 gap-0 overflow-hidden">
-                <CardHeader className="p-0">
+              <Card className="pb-4 gap-0 overflow-hidden bg-[#1142B6] border-blue-400">
+                <CardHeader className="">
                   <Image
                     src={character.image}
                     alt={character.name}
@@ -89,8 +89,8 @@ const DigimonPage = () => {
                     className="w-full h-48 object-contain"
                   />
                 </CardHeader>
-                <CardContent className="p-4">
-                  <CardTitle className="font-bold text-center">
+                <CardContent className="pt-1">
+                  <CardTitle className="font-bold text-center text-white">
                     {character.name}
                   </CardTitle>
                 </CardContent>
@@ -103,22 +103,27 @@ const DigimonPage = () => {
           </div>
         )}
       </div>
+
+      {/*  */}
       {search === "" && (
-        <Pagination>
+        <Pagination className="text-white">
           <PaginationContent>
             <PaginationItem
               className={
                 page === 1 ? "pointer-events-none opacity-40" : "cursor-pointer"
               }
             >
-              <PaginationPrevious onClick={handlePreviousPage} />
+              <PaginationPrevious
+                className="hover:bg-blue-500/20 "
+                onClick={handlePreviousPage}
+              />
             </PaginationItem>
 
             {paginationRange.map((pageNumber, i) => {
               if (pageNumber === dots) {
                 return (
                   <PaginationItem key={"dots-" + i}>
-                    <PaginationEllipsis />
+                    <PaginationEllipsis className="text-white" />
                   </PaginationItem>
                 );
               }
@@ -127,6 +132,11 @@ const DigimonPage = () => {
                   <PaginationLink
                     onClick={() => handlePageClick(pageNumber as number)}
                     isActive={page === pageNumber}
+                    className={
+                      page === pageNumber
+                        ? "bg-[#499CF0] border-blue-500 text-white hover:bg-blue-300"
+                        : "hover:bg-blue-500/20"
+                    }
                   >
                     {pageNumber}
                   </PaginationLink>
@@ -141,7 +151,10 @@ const DigimonPage = () => {
                   : "cursor-pointer"
               }
             >
-              <PaginationNext onClick={handleNextPage} />
+              <PaginationNext
+                className="hover:bg-blue-500/20 "
+                onClick={handleNextPage}
+              />
             </PaginationItem>
           </PaginationContent>
         </Pagination>
