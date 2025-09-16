@@ -71,7 +71,7 @@ export const DigimonDetailView = ({
               <div className="absolute bottom-0 w-full h-20 bg-gradient-to-t from-[#1142B6] to-transparent" />
             </CardHeader>
             <CardContent className="p-6 flex-1 overflow-y-auto bg-[#1142B6] scrollbar-custom">
-              <CardTitle className="text-3xl font-bold tracking-tight text-center text-white">
+              <CardTitle className="text-3xl font-bold tracking-tight text-center text-white [text-shadow:2px_2px_4px_rgba(0,0,0,0.5)]">
                 {detailData.name}
               </CardTitle>
               {/* Stats */}
@@ -81,7 +81,7 @@ export const DigimonDetailView = ({
                   <span className="bg-amber-600 font-semibold px-2 py-1 h-full justify-center text-center">
                     Level
                   </span>
-                  <span className="text-white font-medium px-2">
+                  <span className="text-white font-medium px-2 [text-shadow:1px_1px_2px_rgba(0,0,0,0.7)]">
                     {detailData.levels
                       ?.map((level) => level.level)
                       .join(", ") || "N/A"}
@@ -93,7 +93,7 @@ export const DigimonDetailView = ({
                   <span className="bg-red-600 font-semibold px-2 py-1 h-full justify-center text-center">
                     Attribute
                   </span>
-                  <span className="text-white font-medium px-2">
+                  <span className="text-white font-medium px-2 [text-shadow:1px_1px_2px_rgba(0,0,0,0.7)]">
                     {detailData.attributes
                       ?.map((attr) => attr.attribute)
                       .join(", ") || "N/A"}
@@ -105,7 +105,7 @@ export const DigimonDetailView = ({
                   <span className="bg-purple-600 font-semibold px-2 py-1 h-full justify-center text-center">
                     Type
                   </span>
-                  <span className="text-white font-medium px-2">
+                  <span className="text-white font-medium px-2 [text-shadow:1px_1px_2px_rgba(0,0,0,0.7)]">
                     {detailData.types?.map((type) => type.type).join(", ") ||
                       "N/A"}
                   </span>
@@ -116,7 +116,7 @@ export const DigimonDetailView = ({
                   <span className="bg-green-600 font-semibold px-3 py-1 h-full justify-center text-center">
                     Release
                   </span>
-                  <span className="text-white font-medium px-2">
+                  <span className="text-white font-medium px-2 [text-shadow:1px_1px_2px_rgba(0,0,0,0.7)]">
                     {detailData.releaseDate || "N/A"}
                   </span>
                 </div>

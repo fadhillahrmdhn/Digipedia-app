@@ -79,7 +79,7 @@ const DigimonPage = () => {
               className="cursor-pointer rounded-lg text-left transition-transform duration-300 ease-in-out hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-white"
               onClick={() => setSelectedCard(character.id)}
             >
-              <Card className="pb-4 gap-0 overflow-hidden bg-[#1142B6] border-blue-400">
+              <Card className="gap-0 overflow-hidden bg-[#1142B6] border-blue-400 h-full">
                 <CardHeader className="">
                   <Image
                     src={character.image}
