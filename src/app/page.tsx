@@ -9,9 +9,9 @@ export default function HomePage() {
   return (
     <>
       {/* ===== Hero Section ===== */}
-      <section className="grid grid-cols-1 md:grid-cols-2 items-center px-4 md:px-16 py-10">
+      <section className="grid grid-cols-1 md:grid-cols-2 items-center md:px-10">
         {/* Kolom Kiri: Teks & Tombol */}
-        <div className="flex flex-col md:mt-20 gap-6 md:gap-9 text-center md:text-center">
+        <div className="flex flex-col gap-6 md:gap-9 text-center md:text-center">
           <h1 className="text-4xl md:text-[55px] text-[#499CF0] font-bold">
             DigiPedia
           </h1>
@@ -24,7 +24,7 @@ export default function HomePage() {
           </p>
           <div className="flex justify-center md:justify-center">
             <Link href="/gallery">
-              <Button className="text-base md:text-[18px] px-6 md:px-8 py-4 md:py-6 text-white font-bold bg-[#499CF0] hover:bg-[#1142B6] hover:shadow-xl rounded-3xl cursor-pointer">
+              <Button className="text-base md:text-[18px] px-6 md:px-8 py-4 md:py-6 text-slate-100 font-bold bg-[#499CF0] hover:bg-[#1142B6] hover:shadow-xl rounded-3xl cursor-pointer">
                 Explore Gallery
               </Button>
             </Link>
