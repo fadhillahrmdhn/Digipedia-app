@@ -20,7 +20,7 @@ export default function DigimonList() {
         {Array.from({ length: 4 }).map((_, index) => (
           <div
             key={`loading-${index}`}
-            className="w-45 h-48 bg-[#1142B6] rounded-xl animate-pulse"
+            className="w-45 h-48 bg-[#1142B6] rounded-xl animate-pulse mx-auto"
           />
         ))}
       </div>
