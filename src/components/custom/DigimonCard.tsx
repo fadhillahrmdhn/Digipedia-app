@@ -1,47 +1,50 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { getDigimonDetail } from "@/services/digimon.service";
+import { fetchDigimonDetail } from "@/services/digimon.service"; // Sesuai service lead
 import Image from "next/image";
 
-// Komponen ini menerima nama dan URL detail
-type DigimonCardProps = Readonly<{
-  name: string;
-  href: string;
-}>;
-
-export default function DigimonCard({ name, href }: DigimonCardProps) {
-  // Gunakan useQuery untuk mengambil detail berdasarkan URL (href)
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["digimonDetail", name], // Key unik untuk setiap Digimon
-    queryFn: () => getDigimonDetail(href),
+export default function DigimonCard({
+  digimonId,
+}: {
+  readonly digimonId: number;
+}) {
+  // Ambil detail lengkap untuk kartu ini menggunakan ID
+  const { data: digimon, isLoading } = useQuery({
+    queryKey: ["digimonDetail", digimonId],
+    queryFn: () => fetchDigimonDetail(String(digimonId)), // Panggil service dengan ID
   });
 
-  // Tampilkan kerangka loading saat data detail sedang diambil
-  if (isLoading) {
+  // Tampilkan kerangka loading saat detail sedang diambil
+  if (isLoading || !digimon) {
     return (
-      <div className="w-36 h-48 bg-[#0F142B] rounded-xl flex items-center justify-center animate-pulse" />
+      <div className="w-40 h-48 bg-[#0F142B] rounded-xl animate-pulse mx-auto" />
     );
   }
 
-  if (isError) return null; // Jangan tampilkan apa-apa jika detail gagal diambil
-
-  // Ambil URL gambar dari data detail
-  const imageUrl = data?.images?.[0]?.href ?? "";
-  const level =
-    data?.levels && data.levels.length > 0 ? data.levels[0].level : "Unknown";
+  const imageUrl = digimon.images[0]?.href;
+  const level = digimon.levels[0]?.level || "Unknown";
 
   return (
-    <div className="w-36 md:w-44 bg-[#1142B6] p-3 md:p-5 rounded-xl border border-white/10 hover:border-white/20 hover:bg-[#499CF0] hover:text-black transition-all-ease-in-out duration-200 cursor-pointer flex flex-col items-center">
-      <Image
-        src={imageUrl}
-        alt={name}
-        width={96}
-        height={96}
-        className="w-24 h-24 object-contain"
-      />
-      <p className="text-center mt-2 font-semibold truncate w-full">{name}</p>
-      <p className="text-center text-sm text-black-400">{level}</p>
+    <div className="w-45 bg-[#1142B6] hover:bg-[#499CF0] cursor-pointer p-3 rounded-xl border-white/10 flex flex-col items-center mx-auto ">
+      {imageUrl ? (
+        <Image
+          src={imageUrl}
+          alt={digimon.name}
+          width={100}
+          height={100}
+          className="w-33"
+        />
+      ) : (
+        // Tampilan cadangan jika tidak ada gambar
+        <div className="w-24 h-24 flex items-center justify-center text-xl font-bold bg-white/10 rounded-full">
+          ?
+        </div>
+      )}
+      <div className="text-center w-full mt-2">
+        <p className="font-semibold truncate">{digimon.name}</p>
+        <p className="text-sm text-white">{level}</p>
+      </div>
     </div>
   );
 }

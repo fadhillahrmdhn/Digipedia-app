@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// Perbaikan import font Geist (kemungkinan ini yang dimaksud lead-mu)
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
-import Header from "@/components/custom/Navbar";
+import Header from "@/components/custom/Navbar"; // Sesuai nama file lead
 
-const inter = Inter({ subsets: ["latin"] });
-
+// == Dipertahankan dari kode lead ==
 export const metadata: Metadata = {
   title: "DigiPedia",
   description: "Your Digital Monster Encyclopedia",
@@ -18,10 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* Tambahkan class untuk background dan warna teks default */}
-      <body className={`${inter.className} bg-[#001A7C] text-white`}>
+      <body
+        // == ClassName digabungkan ==
+        className={`${GeistSans.variable} ${GeistMono.variable} antialiased bg-[#0D2579] text-white`}
+      >
         <QueryProvider>
-          <Header /> {/* Ganti Navbar dengan Header */}
+          <Header />
           <main className="container py-6">{children}</main>
         </QueryProvider>
       </body>

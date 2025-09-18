@@ -1,5 +1,3 @@
-// src/app/page.tsx
-
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button"; // Komponen Button dari Shadcn/ui
@@ -45,7 +43,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== Featured Digimon Section ===== */}
-      <section className="flex flex-col px-4 md:px-16 py-8">
+      <section>
         <h2 className="text-lg md:text-xl font-semibold text-center mb-4">
           Featured Digimon
         </h2>

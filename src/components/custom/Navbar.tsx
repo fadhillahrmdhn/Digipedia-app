@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Home, Images } from "lucide-react";
 
 export default function Header() {
-  // Langkah 2: Buat state untuk melacak posisi scroll
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Event listener untuk scroll
@@ -31,9 +30,7 @@ export default function Header() {
   return (
     // Terapkan class secara dinamis
     <header
-      className={`p-[15px] sticky top-0 z-50 transition-colors duration-300 ${
-        isScrolled ? "bg-[#1142B6]/35 shadow-md " : "bg-[#499CF0]"
-      }`}
+      className={`p-[15px] ${isScrolled ? "bg-[#1142B6]/35 shadow-md " : "bg-[#499CF0]"}`}
     >
       <nav className="container mx-auto flex justify-center items-center h-15">
         <div className="flex items-center gap-10 md:gap-20">
