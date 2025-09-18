@@ -16,11 +16,11 @@ export default function DigimonList() {
   if (isLoading) {
     // Tampilkan beberapa kerangka loading
     return (
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        {Array.from({ length: 4 }).map((_, idx) => (
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 max-w-4xl mx-auto">
+        {Array.from({ length: 4 }).map((_, index) => (
           <div
-            key={`loading-skeleton-${idx}`}
-            className="w-full h-48 bg-[#1142B6] rounded-xl animate-pulse"
+            key={`loading-${index}`}
+            className="w-45 h-48 bg-[#1142B6] rounded-xl animate-pulse"
           />
         ))}
       </div>
@@ -28,7 +28,7 @@ export default function DigimonList() {
   }
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-4xl mx-auto justify-center">
       {digimonList?.map((digimon) => (
         <DigimonCard key={digimon.id} digimonId={Number(digimon.id)} />
       ))}

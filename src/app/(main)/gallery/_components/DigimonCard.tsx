@@ -18,7 +18,7 @@ export default function DigimonCard({
   // Tampilkan kerangka loading saat detail sedang diambil
   if (isLoading || !digimon) {
     return (
-      <div className="w-40 h-48 bg-[#0F142B] rounded-xl animate-pulse mx-auto" />
+      <div className="w-45 h-48 bg-[#0F142B] rounded-xl animate-pulse mx-auto" />
     );
   }
 
@@ -26,7 +26,7 @@ export default function DigimonCard({
   const level = digimon.levels[0]?.level || "Unknown";
 
   return (
-    <div className="w-45 bg-[#1142B6] hover:bg-[#499CF0] cursor-pointer p-3 rounded-xl border-white/10 flex flex-col items-center mx-auto ">
+    <div className="w-45 bg-[#1142B6] hover:bg-[#499CF0] cursor-pointer p-3 rounded-xl border-white/10 flex flex-col items-center mx-auto">
       {imageUrl ? (
         <Image
           src={imageUrl}
