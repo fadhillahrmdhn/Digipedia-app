@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button"; // Komponen Button dari Shadcn/ui
-import DigimonList from "@/components/custom/DigimonList"; // Komponen yang sudah kita buat
+import DigimonList from "@/app/(main)/gallery/_components/DigimonList"; // Komponen yang sudah kita buat
 
 export default function HomePage() {
   return (

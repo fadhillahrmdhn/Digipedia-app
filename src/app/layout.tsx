@@ -4,7 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
-import Header from "@/components/custom/Navbar"; // Sesuai nama file lead
+import Header from "@/app/(main)/gallery/Navbar"; // Sesuai nama file lead
 
 // == Dipertahankan dari kode lead ==
 export const metadata: Metadata = {
