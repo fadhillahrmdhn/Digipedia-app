@@ -1,6 +1,9 @@
 export default function Loading() {
   return (
-    <div role="status">
+    <div
+      role="status"
+      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-2xl"
+    >
       <svg
         aria-hidden="true"
         className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
