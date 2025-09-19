@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Home, Images } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Event listener untuk scroll
@@ -28,7 +30,6 @@ export default function Header() {
   }, []); // Array kosong [] memastikan efek ini hanya berjalan sekali
 
   return (
-    // Terapkan class secara dinamis
     <header
       className={`p-[15px] ${isScrolled ? "bg-[#1142B6]/35 shadow-md " : "bg-[#499CF0]"}`}
     >
@@ -36,14 +37,14 @@ export default function Header() {
         <div className="flex items-center gap-10 md:gap-20">
           <Link
             href="/"
-            className="flex items-center gap-2 text-black text-[20px] font-bold hover:text-white transition-colors"
+            className={`flex items-center gap-2 text-[20px] font-bold transition-colors px-3 py-1 rounded-lg ${pathname === "/" ? "text-white bg-[#1142B6]" : "text-black hover:bg-[#1142B6] hover:text-white"}`}
           >
             <Home size={20} />
             <span>Home</span>
           </Link>
           <Link
             href="/gallery"
-            className="flex items-center gap-2 text-black text-[20px] font-bold hover:text-white transition-colors"
+            className={`flex items-center gap-2 text-[20px] font-bold transition-colors px-3 py-1 rounded-lg ${pathname === "/gallery" ? "text-white bg-[#1142B6]" : "text-black hover:bg-[#1142B6] hover:text-white"}`}
           >
             <Images size={20} />
             <span>Gallery</span>
