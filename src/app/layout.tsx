@@ -5,8 +5,8 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
 import Header from "@/app/(main)/gallery/_components/Navbar"; // Sesuai nama file lead
+import { Toaster } from "sonner";
 
-// == Dipertahankan dari kode lead ==
 export const metadata: Metadata = {
   title: "DigiPedia",
   description: "Your Digital Monster Encyclopedia",
@@ -20,12 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        // == ClassName digabungkan ==
         className={`${GeistSans.variable} ${GeistMono.variable} antialiased bg-[#0D2579] text-white`}
       >
         <QueryProvider>
           <Header />
-          <main className="container py-6">{children}</main>
+          <main>{children}</main>
+          <Toaster position="top-right" richColors />
         </QueryProvider>
       </body>
     </html>
