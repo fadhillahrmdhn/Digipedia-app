@@ -1,1 +1,1 @@
-export * from "./queryProviders";
+export * from "./QueryProvider";
