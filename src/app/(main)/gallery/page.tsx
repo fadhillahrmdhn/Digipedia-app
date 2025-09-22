@@ -79,14 +79,14 @@ const DigimonPage = () => {
               className="cursor-pointer rounded-lg text-left transition-transform duration-300 ease-in-out hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-white"
               onClick={() => setSelectedCard(character.id)}
             >
-              <Card className="gap-0 overflow-hidden bg-[#1142B6] border-blue-400 h-full">
+              <Card className="gap-0 overflow-hidden bg-[#1142B6] hover:bg-[#2456cd] border-blue-400 h-full">
                 <CardHeader className="">
                   <Image
                     src={character.image}
                     alt={character.name}
                     width={400}
                     height={400}
-                    className="w-full h-48 object-contain"
+                    className="w-full h-48 object-cover rounded-lg"
                   />
                 </CardHeader>
                 <CardContent className="pt-1">
@@ -114,7 +114,7 @@ const DigimonPage = () => {
               }
             >
               <PaginationPrevious
-                className="hover:bg-blue-500/20 "
+                className="hover:bg-[#499CF0] "
                 onClick={handlePreviousPage}
               />
             </PaginationItem>
@@ -152,7 +152,7 @@ const DigimonPage = () => {
               }
             >
               <PaginationNext
-                className="hover:bg-blue-500/20 "
+                className="hover:bg-[#499CF0] "
                 onClick={handleNextPage}
               />
             </PaginationItem>

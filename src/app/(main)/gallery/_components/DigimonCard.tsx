@@ -26,14 +26,14 @@ export default function DigimonCard({
   const level = digimon.levels[0]?.level || "Unknown";
 
   return (
-    <div className="w-45 bg-[#1142B6] hover:bg-[#499CF0] cursor-pointer p-3 rounded-xl border-white/10 flex flex-col items-center mx-auto">
+    <div className="w-45 bg-[#1142B6] hover:scale-[1.03] hover:bg-[#2456cd] hover:transition-all-ease-in-out cursor-pointer p-3 rounded-xl border-white/10 flex flex-col items-center mx-auto">
       {imageUrl ? (
         <Image
           src={imageUrl}
           alt={digimon.name}
           width={100}
           height={100}
-          className="w-33"
+          className="w-33 rounded-lg"
         />
       ) : (
         // Tampilan cadangan jika tidak ada gambar
