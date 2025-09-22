@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-// Perbaikan import font Geist (kemungkinan ini yang dimaksud lead-mu)
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
-import Header from "@/app/(main)/gallery/_components/Navbar"; // Sesuai nama file lead
+import Header from "@/app/(main)/gallery/_components/Navbar";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {

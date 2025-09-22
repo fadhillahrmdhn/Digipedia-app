@@ -22,7 +22,7 @@ export default function HomePage() {
           </p>
           <div className="flex justify-center md:justify-center">
             <Link href="/gallery">
-              <Button className="text-base md:text-[18px] px-6 md:px-8 py-4 md:py-6 text-slate-100 font-bold bg-[#499CF0] hover:bg-[#1142B6] hover:shadow-xl rounded-3xl cursor-pointer">
+              <Button className="text-base md:text-[18px] px-6 md:px-8 py-4 md:py-6 text-slate-100 font-bold bg-[#499CF0] hover:scale-[1.03] hover:transition-all-ease-in-out hover:bg-[#2456cd] hover:shadow-xl rounded-3xl cursor-pointer">
                 Explore Gallery
               </Button>
             </Link>
