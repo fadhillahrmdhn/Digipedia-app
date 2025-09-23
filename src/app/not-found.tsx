@@ -3,7 +3,7 @@
 import FuzzyText from "@/components/FuzzyText";
 export default function NotFound() {
   return (
-    <div className="flex flex-grow flex-col items-center justify-center">
+    <div className="flex flex-col absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl md:text-2xl">
       <FuzzyText
         baseIntensity={0.2}
         hoverIntensity={0.5}
