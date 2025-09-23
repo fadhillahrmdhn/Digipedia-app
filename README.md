@@ -31,14 +31,14 @@
 
 This project empowers developers to build maintainable, high-performance web applications with a focus on user engagement and seamless data integration.
 
-#### Features
+### Features
 
 - [x] **Real-time Search**: Instant search functionality to find Digimon characters by name
 - [x] **Smart Pagination**: Advanced pagination system with ellipsis navigation for large datasets
 - [x] **Interactive Gallery**: Grid-based character gallery with hover effects and smooth transitions
 - [x] **Detailed Character View**: Modal-based detailed view showing character stats, attributes, types, and descriptions
 
-#### Optimal display on desktop and mobile
+### Optimal display on desktop and mobile
 
 - Mobile View
 <p align="center">
