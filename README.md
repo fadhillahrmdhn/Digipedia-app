@@ -42,8 +42,8 @@ This project empowers developers to build maintainable, high-performance web app
 
 - Mobile View
 <p align="center">
-  <img src="./public/images/mobile-home-page.png" alt="mobile-home-page" width="40%">&nbsp;&nbsp;&nbsp;
-  <img src="./public/images/mobile-gallery-page.png" alt="mobile-gallery-page" width="40%">
+  <img src="./public/images/mobile-home-page.png" alt="mobile-home-page" width="30%">&nbsp;&nbsp;&nbsp;
+  <img src="./public/images/mobile-gallery-page.png" alt="mobile-gallery-page" width="30%">
 </p>
 
 - Desktop View
